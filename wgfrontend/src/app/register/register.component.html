@@ -1,0 +1,1273 @@
+<div class="image p-5 d-flex flex-row align-items-center" style="overflow: auto">
+  <div  class="row w-100">
+    <div class="col-6  d-inline-flex flex-column align-items-center justify-content-center">
+      <div
+        class="card mb-2 p-2 candidateType"
+        (click)="userRegistration()"
+        [ngClass]="user ? 'user-active' : 'user_inactive'"
+      >
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 18px; font-weight: bold">
+            User
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div
+        class="card mt-2 p-2 candidateType"
+        (click)="freelancerRegistration()"
+        [ngClass]="freelancer ? 'user-active' : 'user_inactive'"
+      >
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 18px; font-weight: bold">
+            Free Lancer
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 d-inline-flex flex-column  justify-content-center">
+      <div class="" *ngIf="!candidateTypeSelected">
+        <div class="card cardUnselcted">
+          <div class="p-5 text-center" >
+            Please select a user type to register
+          </div>
+        </div>
+      </div>
+
+      <div class="user" *ngIf="user">
+        <div class="card">
+          <div class="p-3">
+            <h2 class="">User Registration</h2>
+            <form autocomplete="off" [formGroup]="userForm">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Name </label>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control w-100"
+                      placeholder="Enter name"
+                      maxlength="10"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.name?.touched && f?.name?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.name?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.name?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.name?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="f?.name?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.name?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> User Name </label>
+                    <input
+                      type="text"
+                      formControlName="username"
+                      class="form-control"
+                      placeholder="Enter Username"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.username?.touched && f?.username?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.username?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.username?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.username?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="f?.username?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.username?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> Password </label>
+                    <input
+                      type="password"
+                      formControlName="password"
+                      class="form-control"
+                      placeholder="Enter Password"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.password?.touched && f?.password?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.password?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.password?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.password?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="f?.password?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.password?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> Confirm Password </label>
+                    <input
+                      type="password"
+                      formControlName="confirmPassword"
+                      class="form-control"
+                      placeholder="Re-Enter Password"
+                      maxlength="20"
+                      required (focusout)="checkuserpass()"
+                    />
+                    <div
+                      *ngIf="
+                        f?.confirmPassword?.touched && f?.confirmPassword?.errors
+                      "
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.confirmPassword?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.confirmPassword?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{
+                          f?.confirmPassword?.errors?.maxlength.requiredLength
+                        }}
+                        for this field.</span
+                      >
+                      <span *ngIf="f?.confirmPassword?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.confirmPassword?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Mail Id</label>
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="Enter Mail Id"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.email?.touched && f?.email?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.email?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.email?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.email?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="f?.email?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.email?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                      type="email"
+                      formControlName="mobile"
+                      class="form-control"
+                      placeholder="Enter Mobile number"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.mobile?.touched && f?.mobile?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.mobile?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.mobile?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.mobile?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="f?.mobile?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.mobile?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input
+                      type="text"
+                      formControlName="address"
+                      class="form-control"
+                      placeholder="Enter Username"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="f?.address?.touched && f?.address?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="f?.address?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="f?.address?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ f?.address?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="f?.address?.errors?.minlength"
+                        >Minimum
+                        {{
+                          f?.address?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-primary login-btn"
+                type="submit"
+                [disabled]="!userForm.valid"
+                (click)="Register()"
+              >
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="freelancer" *ngIf="freelancer">
+        <div class="card">
+          <div class="p-3">
+            <h2>FreeLancer Registration</h2>
+            <form novalidate autocomplete="off" [formGroup]="freeLancerForm">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Name </label>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control"
+                      placeholder="Enter name"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.name?.touched && ff?.name?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.name?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.name?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.name?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="ff?.name?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.name?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> User Name </label>
+                    <input
+                      type="text"
+                      formControlName="username"
+                      class="form-control"
+                      placeholder="Enter Username"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.username?.touched && ff?.username?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.username?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.username?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.firstName?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="ff?.username?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.firstName?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> Password </label>
+                    <input
+                      type="password"
+                      formControlName="password"
+                      class="form-control"
+                      placeholder="Enter Password"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.password?.touched && ff?.password?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.password?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.password?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.password?.errors?.maxlength.requiredLength }} for
+                        this field.</span
+                      >
+                      <span *ngIf="ff?.password?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.password?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label> Confirm Password </label>
+                    <input
+                      type="password"
+                      formControlName="confirmPassword"
+                      class="form-control"
+                      placeholder="Re-Enter Password"
+                      maxlength="20" (focusout)="checkpass()"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        ff?.confirmPassword?.touched && ff?.confirmPassword?.errors
+                      "
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.confirmPassword?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.confirmPassword?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{
+                          ff?.confirmPassword?.errors?.maxlength.requiredLength
+                        }}
+                        for this field.</span
+                      >
+                      <span *ngIf="ff?.confirmPassword?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.confirmPassword?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Mail Id</label>
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="Enter Mail Id"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.email?.touched && ff?.email?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.email?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.email?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.email?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="ff?.email?.errors?.minlength"
+                        >Minimum
+                        {{ ff?.email?.errors?.minlength.requiredLength }} Character
+                        is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                      type="number"
+                      formControlName="mobile"
+                      class="form-control"
+                      placeholder="Enter Mobile number"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.mobile?.touched && ff?.mobile?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.mobile?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.mobile?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.mobile?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="ff?.mobile?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.mobile?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Experience</label>
+                    <input
+                      type="number"
+                      formControlName="exp"
+                      class="form-control"
+                      placeholder="Experience"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.exp?.touched && ff?.exp?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.exp?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.exp?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.exp?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="ff?.exp?.errors?.minlength"
+                        >Minimum
+                        {{
+                          ff?.exp?.errors?.minlength.requiredLength
+                        }}
+                        Character is required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label>Expertised Fields</label>
+                    <input
+                      type="text"
+                      formControlName="skillset"
+                      class="form-control"
+                      placeholder="Expertise Feilds"
+                      maxlength="20"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.skillset?.touched && ff?.skillset?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.skillset?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.skillset?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.skillset?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="ff?.skillset?.errors?.minlength"
+                        >Minimum
+                        {{ ff?.skillset?.errors?.minlength.requiredLength }} Character is
+                        required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label class="mt-1 mb-1">Qualification</label>
+                    <input
+                      type="text"
+                      formControlName="qualification"
+                      class="form-control"
+                      placeholder="Enter Qualification"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.qualification?.touched && ff?.qualification?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.qualification?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                      <span *ngIf="ff?.qualification?.errors?.maxlength"
+                        >Maximum Character Limit is
+                        {{ ff?.qualification?.errors?.maxlength.requiredLength }} for this
+                        field.</span
+                      >
+                      <span *ngIf="ff?.qualification?.errors?.minlength"
+                        >Minimum
+                        {{ ff?.qualification?.errors?.minlength.requiredLength }} Character is
+                        required for this field.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label class="mt-1 mb-1">Image</label>
+                    <input
+                      type="file"
+                      formControlName="photo"
+                      class="file-upload"
+                      placeholder="select image"
+                      (change)="onFileChange($event)"
+                      required
+                    />
+                    <div
+                      *ngIf="ff?.photo?.touched && ff?.photo?.errors"
+                      class="invalid-feedback"
+                    >
+                      <span *ngIf="ff?.photo?.errors?.required"
+                        >This field is mandatory.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-primary login-btn"
+                type="submit"
+                [disabled]="!freeLancerForm.valid"
+                (click)="freeLancerRegister()"
+              >
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="image p-5" style="overflow: hidden">
+  <div class="row align-center-container justify-content-center align-items-center">
+    <div class="col-6" style="top: 200px; position: relative">
+      <div
+        class="card mb-2 mt-0 candidateType"
+        style="width: 35rem; height: 9rem"
+        (click)="userRegistration()"
+        [ngClass]="user ? 'user-active' : 'user_inactive'"
+      >
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 18px; font-weight: bold">
+            User
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div
+        class="card pt-2 candidateType"
+        style="width: 35rem; height: 9rem"
+        (click)="freelancerRegistration()"
+        [ngClass]="freelancer ? 'user-active' : 'user_inactive'"
+      >
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 18px; font-weight: bold">
+            Free Lancer
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="user col-6" *ngIf="user">
+      <div class="card" style="top: 30px; position: relative">
+        <div class="py-2" style="padding-left: 150px">
+          <h2>User Registration</h2>
+          <form novalidate autocomplete="off" [formGroup]="userForm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label>Name </label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control w-100"
+                    placeholder="Enter name"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.firstName?.touched && f?.name?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.name?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.name?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.firstName?.errors?.maxlength.requiredLength }} for
+                      this field.</span
+                    >
+                    <span *ngIf="f?.name?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.firstName?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label> User Name </label>
+                  <input
+                    type="text"
+                    formControlName="username"
+                    class="form-control"
+                    placeholder="Enter Username"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.userName?.touched && f?.userName?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.userName?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.userName?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.firstName?.errors?.maxlength.requiredLength }} for
+                      this field.</span
+                    >
+                    <span *ngIf="f?.userName?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.firstName?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label> Password </label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    placeholder="Enter Password"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.password?.touched && f?.password?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.password?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.password?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.password?.errors?.maxlength.requiredLength }} for
+                      this field.</span
+                    >
+                    <span *ngIf="f?.password?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.password?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label> Confirm Password </label>
+                  <input
+                    type="password"
+                    formControlName="confirmPassword"
+                    class="form-control"
+                    placeholder="Re-Enter Password"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      f?.confirmPassword?.touched && f?.confirmPassword?.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.confirmPassword?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.confirmPassword?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{
+                        f?.confirmPassword?.errors?.maxlength.requiredLength
+                      }}
+                      for this field.</span
+                    >
+                    <span *ngIf="f?.confirmPassword?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.confirmPassword?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label>Mail Id</label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control"
+                    placeholder="Enter Mail Id"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.mailId?.touched && f?.mailId?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.mailId?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.mailId?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.mailId?.errors?.maxlength.requiredLength }} for this
+                      field.</span
+                    >
+                    <span *ngIf="f?.mailId?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.mailId?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label>Mobile Number</label>
+                  <input
+                    type="email"
+                    formControlName="mobile"
+                    class="form-control"
+                    placeholder="Enter Mobile number"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.mobilenum?.touched && f?.mobilenum?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.mobilenum?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.mobilenum?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.mailId?.errors?.maxlength.requiredLength }} for this
+                      field.</span
+                    >
+                    <span *ngIf="f?.mobilenum?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.mobilenum?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    formControlName="address"
+                    class="form-control"
+                    placeholder="Enter Username"
+                    maxlength="20"
+                    required
+                  />
+                  <div
+                    *ngIf="f?.address?.touched && f?.address?.errors"
+                    class="invalid-feedback"
+                  >
+                    <span *ngIf="f?.address?.errors?.required"
+                      >This field is mandatory.</span
+                    >
+                    <span *ngIf="f?.address?.errors?.maxlength"
+                      >Maximum Character Limit is
+                      {{ f?.firstName?.errors?.maxlength.requiredLength }} for
+                      this field.</span
+                    >
+                    <span *ngIf="f?.address?.errors?.minlength"
+                      >Minimum
+                      {{
+                        f?.firstName?.errors?.minlength.requiredLength
+                      }}
+                      Character is required for this field.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary login-btn"
+              type="submit"
+              (click)="Register()"
+            >
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="freelancer col-6" *ngIf="freelancer">
+      <div class="card">
+        <div>
+          <h2>FreeLancer Registration</h2>
+        </div>
+        <form novalidate autocomplete="off" [formGroup]="freeLancerForm">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label>Name </label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control"
+                  placeholder="Enter name"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.firstName?.touched && ff?.name?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.name?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.name?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.firstName?.errors?.maxlength.requiredLength }} for
+                    this field.</span
+                  >
+                  <span *ngIf="ff?.name?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.firstName?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label> User Name </label>
+                <input
+                  type="text"
+                  formControlName="username"
+                  class="form-control"
+                  placeholder="Enter Username"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.userName?.touched && f?.userName?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.userName?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.userName?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.firstName?.errors?.maxlength.requiredLength }} for
+                    this field.</span
+                  >
+                  <span *ngIf="ff?.userName?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.firstName?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label> Password </label>
+                <input
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="Enter Password"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.password?.touched && f?.password?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.password?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.password?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.password?.errors?.maxlength.requiredLength }} for
+                    this field.</span
+                  >
+                  <span *ngIf="ff?.password?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.password?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label> Confirm Password </label>
+                <input
+                  type="password"
+                  formControlName="confirmPassword"
+                  class="form-control"
+                  placeholder="Re-Enter Password"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="
+                    ff?.confirmPassword?.touched && f?.confirmPassword?.errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.confirmPassword?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.confirmPassword?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{
+                      ff?.confirmPassword?.errors?.maxlength.requiredLength
+                    }}
+                    for this field.</span
+                  >
+                  <span *ngIf="ff?.confirmPassword?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.confirmPassword?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label>Mail Id</label>
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="Enter Mail Id"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.mailId?.touched && f?.mailId?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.mailId?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.mailId?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.mailId?.errors?.maxlength.requiredLength }} for this
+                    field.</span
+                  >
+                  <span *ngIf="ff?.mailId?.errors?.minlength"
+                    >Minimum
+                    {{ ff?.mailId?.errors?.minlength.requiredLength }} Character
+                    is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label>Mobile Number</label>
+                <input
+                  type="number"
+                  formControlName="mobile"
+                  class="form-control"
+                  placeholder="Enter Mobile number"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.mobilenum?.touched && f?.mobilenum?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.mobilenum?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.mobilenum?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.mailId?.errors?.maxlength.requiredLength }} for this
+                    field.</span
+                  >
+                  <span *ngIf="ff?.mobilenum?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.mobilenum?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label>Experience</label>
+                <input
+                  type="number"
+                  formControlName="exp"
+                  class="form-control"
+                  placeholder="Experience"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.exp?.touched && f?.exp?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.exp?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.exp?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.mailId?.errors?.maxlength.requiredLength }} for this
+                    field.</span
+                  >
+                  <span *ngIf="ff?.exp?.errors?.minlength"
+                    >Minimum
+                    {{
+                      ff?.mobilenum?.errors?.minlength.requiredLength
+                    }}
+                    Character is required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label>Expertised Fields</label>
+                <input
+                  type="text"
+                  formControlName="skillset"
+                  class="form-control"
+                  placeholder="Expertise Feilds"
+                  maxlength="20"
+                  required
+                />
+                <div
+                  *ngIf="ff?.exp?.touched && f?.exp?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="ff?.exp?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                  <span *ngIf="ff?.exp?.errors?.maxlength"
+                    >Maximum Character Limit is
+                    {{ ff?.exp?.errors?.maxlength.requiredLength }} for this
+                    field.</span
+                  >
+                  <span *ngIf="ff?.mobilenum?.errors?.minlength"
+                    >Minimum
+                    {{ ff?.exp?.errors?.minlength.requiredLength }} Character is
+                    required for this field.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              <div class="form-group">
+                <label class="mt-1 mb-1">Banner</label>
+                <input
+                  type="file"
+                  formControlName="photo"
+                  class="file-upload"
+                  placeholder="select image"
+                  (change)="onFileChange($event)"
+                  required
+                />
+                <div
+                  *ngIf="f?.image?.touched && f?.link?.errors"
+                  class="invalid-feedback"
+                >
+                  <span *ngIf="f?.image?.errors?.required"
+                    >This field is mandatory.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary login-btn"
+              type="submit"
+              (click)="freeLancerRegister()"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->

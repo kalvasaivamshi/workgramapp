@@ -1,0 +1,444 @@
+<header class="header-main">
+    <div class="header-bottom">
+      <div class="wrap">
+        <div class="header-bottom-left">
+          <a class="logo">
+           <h2 style="font-size: 40px;">Workgram</h2>
+          </a>
+        </div>
+        <div class="header-bottom-menu">
+          <div class="menu-header-menu-container">
+            <ul id="menu-header-menu" class="menu">
+              <li
+                id="menu-item-14"
+                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-14" (click)="l.active = !l.active; toggleMenu(1);"
+                *ngFor="let l of parentArr"
+              >
+                <a *ngIf="l.sublist.length === 0" [routerLink]="l.rname">{{ l.name }}</a>
+                <a *ngIf="l.sublist.length > 0">{{ l.name }}</a>
+               
+              </li>
+           
+                
+            </ul>
+           
+          </div>
+          
+        </div>
+        <!-- <div class="mobile-only hamburger" [ngClass]="{'header-bottom-menu' : hamburgerToggleOn===true}" [class.active]="hamburgerToggleOn" (click)="toggleMenu()"> -->
+        <div class="mobile-only hamburger" id="hamburger" (click)="toggleMenu(0)">
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page-header"
+    style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 13.36%, rgba(0, 0, 0, 0) 63.91%), url('../../assets/trainers.jpeg') no-repeat  center/cover">
+    <div class="wrap">
+        <div class="breadcrumb" style="background-color:transparent;">
+                     
+        </div>
+       
+    </div>
+  </div>
+  <button class="btn btn-primary login-btn" type="submit" (click)="addWorkshop()" style="text-align:center">
+    Add Workshop
+</button>
+<!-- <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+<!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-2"
+*ngFor="let item of workshopList">
+<div (click)="onClickOfWorkShop()">
+  <img class="card-img-top" [src]="workshopList.banner" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{workshopList.name}}</h5>
+  </div>
+    
+</div>
+</div> -->
+<!-- <div class=" row pt-2 ">
+<div class="col-5 pl-1" *ngFor="let item of workshopList">
+  <div class="wp-block-column"><a class="team-single" target="_blank">
+      <img width="100%" height="720" [src]="item.banner" class="attachment-team-image size-team-image" alt="" loading="lazy"   sizes="(max-width: 900px) 100vw, 720px" />  <div class="content">
+        <h4>
+            {{workshopList.name}}</h4>
+        <h5>Business Operations</h5>
+      </div>
+    </a>
+    
+</div>
+</div>
+
+</div> -->
+<div class="row pt-2">
+  <div class="col-4 align-self-center pb-4" *ngFor="let item of workshopList">
+    <div class="wp-block-column text-center justify-content-center"><a class="team-single" target="_blank" (click)="trainerData(item)">
+        <img height="720" [src]="item.banner" class="attachment-team-image size-team-image w-100" alt=""
+          loading="lazy" sizes="(max-width: 900px) 100vw, 720px" />
+        <div class="content">
+          <h4>
+            {{item.name}}</h4>
+          <!-- <h5>Business Operations</h5> -->
+        </div>
+      </a>
+
+    </div>
+  </div>
+  
+  <ng-template #addworkshop let-modal>
+    <div class="modal-header px-3 pt-3 pb-0">
+      <h1 class="h1" id="modal-basic-title" style="border-left: 5px solid #0783b6; padding-left: 1em; font-size: 20px;">
+        Add Workshop
+      </h1>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <hr />
+    <div class="modal-body px-3 pb-3 pt-0" style="border: 2px">
+      <form novalidate autocomplete="off" [formGroup]="workshopForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="">Name </label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                placeholder="Enter name"
+                maxlength="20"
+                required
+              />
+              <div
+                *ngIf="f?.name?.touched && f?.name?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.name?.errors?.required"
+                  >This field is mandatory.</span
+                >
+                <span *ngIf="f?.name?.errors?.maxlength"
+                  >Maximum Character Limit is
+                  {{ f?.name?.errors?.maxlength.requiredLength }} for this
+                  field.</span
+                >
+                <span *ngIf="f?.name?.errors?.minlength"
+                  >Minimum
+                  {{ f?.name?.errors?.minlength.requiredLength }} Character is
+                  required for this field.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 align-items-center">
+          <div class="col-12 col-sm-12 col-md-6">
+            <label class="">Select a Date</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="date"
+                formControlName="date"
+                id="calInput"
+                aria-describedby="calInputBtn"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                (click)="d.toggle()"
+                [minDate]="minDate"
+                />
+                <!-- (focus)="d.open()" -->
+  
+              <button
+                class="btn btn-secondary"
+                type="button"
+                id="calInputBtn"
+                (click)="d.toggle()"
+              >
+                <img src="../../assets/calendar.svg" />
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6">
+            <label>Select Time</label>
+            <ngb-timepicker
+              [(ngModel)]="time"
+              formControlName="time"
+            ></ngb-timepicker>
+          </div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="form-group">
+              <label class=""> Description</label>
+              <input
+                type="text"
+                formControlName="description"
+                class="form-control"
+                placeholder="Description"
+                maxlength="100"
+                required
+              />
+              <div
+                *ngIf="f?.description?.touched && f?.description?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.description?.errors?.required"
+                  >This field is mandatory.</span
+                >
+                <span *ngIf="f?.description?.errors?.maxlength"
+                  >Maximum Character Limit is
+                  {{ f?.description?.errors?.maxlength.requiredLength }} for this
+                  field.</span
+                >
+                <span *ngIf="f?.description?.errors?.minlength"
+                  >Minimum
+                  {{ f?.description?.errors?.minlength.requiredLength }} Character
+                  is required for this field.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="form-group">
+              <label class=""> Location</label>
+              <input
+                type="text"
+                formControlName="location"
+                class="form-control"
+                placeholder="Add Location"
+                maxlength="100"
+                required
+              />
+              <div
+                *ngIf="f?.location?.touched && f?.location?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.location?.errors?.required"
+                  >This field is mandatory.</span
+                >
+                <span *ngIf="f?.location?.errors?.maxlength"
+                  >Maximum Character Limit is
+                  {{ f?.location?.errors?.maxlength.requiredLength }} for this
+                  field.</span
+                >
+                <span *ngIf="f?.location?.errors?.minlength"
+                  >Minimum
+                  {{ f?.location?.errors?.minlength.requiredLength }} Character is
+                  required for this field.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="">Topics</label>
+              <input
+                type="text"
+                formControlName="topics"
+                class="form-control"
+                placeholder="Description"
+                maxlength="100"
+                required
+              />
+              <div
+                *ngIf="f?.topics?.touched && f?.topics?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.topics?.errors?.required"
+                  >This field is mandatory.</span
+                >
+                <span *ngIf="f?.topics?.errors?.maxlength"
+                  >Maximum Character Limit is
+                  {{ f?.topics?.errors?.maxlength.requiredLength }} for this
+                  field.</span
+                >
+                <span *ngIf="f?.topics?.errors?.minlength"
+                  >Minimum
+                  {{ f?.topics?.errors?.minlength.requiredLength }} Character is
+                  required for this field.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="form-group">
+              <label class=""> Registration Link</label>
+              <input
+                type="url"
+                formControlName="link"
+                class="form-control"
+                placeholder="Registration Link"
+                maxlength="100"
+                required
+              />
+              <div
+                *ngIf="f?.link?.touched && f?.link?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.link?.errors?.required"
+                  >This field is mandatory.</span
+                >
+                <span *ngIf="f?.link?.errors?.maxlength"
+                  >Maximum Character Limit is
+                  {{ f?.link?.errors?.maxlength.requiredLength }} for this
+                  field.</span
+                >
+                <span *ngIf="f?.link?.errors?.minlength"
+                  >Minimum
+                  {{ f?.link?.errors?.minlength.requiredLength }} Character is
+                  required for this field.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="">Workshop Picture</label><br>
+              <input
+                type="file"
+                formControlName="image"
+                class="file-upload"
+                placeholder="select image"
+                (change)="onFileChange($event)"
+                required
+              />
+              <div
+                *ngIf="f?.image?.touched && f?.image?.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="f?.image?.errors?.required"
+                  >This field is mandatory.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- <div class="d-flex flex-column justify-content-center">
+              <input type="file" class="file-upload" [disabled] = "progressBarArray.length<1"
+              (change)="onFileSelected($event, 2)" id="uploadFileAnswer" accept=".xlsx, .xls, .csv" >
+              <label for="uploadFileAnswer" [ngClass]="(progressBarArray.length>0 || skipIcons) ? 'blue-button' : 'disabled-button'" style="margin-top: 20px; cursor: pointer; text-align: center;" >Upload CSV File</label>
+              <a class="link text-center" style="margin-top: 6px; cursor: pointer;" (click)="onClickAnswers()">Skip answers</a>
+          </div> -->
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="modal.close('Close click')"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary"
+        [disabled]="!workshopForm.valid"
+        type="submit"
+        (click)="addCustomer()"
+      >
+        Add
+      </button>
+    </div>
+  </ng-template>
+    <!-- <ng-template #trainerDataDisplay let-modal>
+      <div class="modal-header ml-3">
+        <h1 class="modal-title mt-3" id="modal-basic-title" style="font-size: 25px;"></h1>
+        <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <hr>
+      <div class="modal-body p-2 d-flex flex-column justify-content-center align-self-center" style="border: 2px;">
+        <div class="img ">
+          <img [src]="traineeData.banner" style="height:250px; margin: 2px auto;">
+        </div>
+        <p class="text-center">
+          <label class="labelN">Name:</label>
+          <span class="labelN">{{traineeData.name}}</span>
+        </p>
+        <p class="text-center">
+          <label class="labelN">Expertise feilds:</label>
+          <span class="labelN">{{traineeData.skillset}}</span>
+        </p>
+        <p class="text-center">
+          <label class="labelN">Experience:</label>
+          <span class="labelN">{{traineeData.exp}} years</span>
+        </p>
+        <p class="text-center">
+          <label class="labelN">Rating:</label>
+          <span class="labelN">{{traineeData.rating}}</span>
+        </p>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Cancel</button>
+      </div> 
+    </ng-template> -->
+    <ng-template #trainerDataDisplay let-modal>
+      <div class="modal-header ml-3">
+        <h1 class="modal-title mt-3" id="modal-basic-title" style="font-size: 25px;"></h1>
+        <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <hr>
+      <div class="modal-body p-2 d-flex flex-column justify-content-center align-self-center" style="border: 2px;">
+        <div class="img ">
+          <img [src]="traineeData.banner" style="height:250px; margin: 2px auto;">
+        </div>
+        <p class="text-left">
+          <label class="labelN"  style="font-weight: bold ;">Name:</label>
+          <span class="labelN">{{traineeData.name}}</span>
+        </p>
+        <p class="text-left">
+          <label class="labelN" style="font-weight:bold ;">Trainer :</label>
+          <span class="labelN">{{traineeData.username}}</span>
+        </p>
+        <p class="text-left">
+          <label class="labelN"  style="font-weight:bold ;">Date:</label>
+          <span class="labelN">{{traineeData.wdate}}</span>
+        </p>
+        <p class="text-left">
+          <label class="labelN"  style="font-weight:bold ;">Time:</label>
+          <span class="labelN">{{traineeData.wtime}} </span>
+        </p>
+        <p class="text-left">
+          <label class="labelN"  style="font-weight:bold ;">Description:</label>
+          <span class="labelN">{{traineeData.description}}</span>
+        </p>
+        <p class="text-left">
+          <label class="labelN" style="font-weight:bold ;">Topic covered  :</label>
+          <span class="labelN">{{traineeData.topics}}</span>
+        </p>
+        <p class="text-left">
+          <label class="labelN"  style="font-weight:bold ;">Workshop Link:</label>
+          <!-- <span class="labelN"> {{traineeData.reglink}}</span> -->
+          <a [attr.href]="traineeData.reglink"  (click)="redirect(traineeData.reglink)"rel="noopener noreferrer" >{{traineeData.reglink}}</a>
+        </p>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Cancel</button>
+      </div> -->
+    </ng-template>
+     
+      

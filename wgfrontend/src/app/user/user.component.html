@@ -1,0 +1,182 @@
+<header class="header-main">
+  <div class="header-bottom">
+    <div class="wrap">
+      <div class="header-bottom-left">
+        <a class="logo">
+          <h2 style="font-size: 40px;">Workgram</h2>
+        </a>
+      </div>
+      <div class="header-bottom-menu">
+        <div class="menu-header-menu-container">
+          <ul id="menu-header-menu" class="menu">
+            <li id="menu-item-14"
+              class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-14"
+              (click)="l.active = !l.active; toggleMenu(1);" *ngFor="let l of parentArr">
+              <a *ngIf="l.sublist.length === 0" [routerLink]="l.rname">{{ l.name }}</a>
+              <a *ngIf="l.sublist.length > 0">{{ l.name }}</a>
+
+            </li>
+          </ul>
+
+
+        </div>
+
+      </div>
+      <!-- <div class="mobile-only hamburger" [ngClass]="{'header-bottom-menu' : hamburgerToggleOn===true}" [class.active]="hamburgerToggleOn" (click)="toggleMenu()"> -->
+      <div class="mobile-only hamburger" id="hamburger" (click)="toggleMenu(0)">
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="page-header"
+  style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 13.36%, rgba(0, 0, 0, 0) 63.91%), url('../../assets/user2.jpg') no-repeat center/cover">
+  <div class="wrap">
+    <div class="breadcrumb" style="background-color:transparent;">
+      <a routerLink="home">Home</a>
+    </div>
+
+  </div>
+</div>
+
+
+<h1 style="font-size:40px;" class="d-block text-center my-5">Workshops</h1>
+<!-- <h1 style="font-size:40px; margin-left:40rem; padding-top:3em">Workshops</h1> -->
+<div class="row pt-2">
+  <div class="col-4 align-self-center pb-4" *ngFor="let item of workshopData">
+    <div class="wp-block-column text-center justify-content-center"><a class="team-single" target="_blank" (click)="trainerData(item)">
+        <img height="720" [src]="item.banner" class="attachment-team-image size-team-image w-100" alt=""
+          loading="lazy" sizes="(max-width: 900px) 100vw, 720px" />
+        <div class="content">
+          <h4>
+            {{item.name}}</h4>
+          <!-- <h5>Business Operations</h5> -->
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <!-- <div class="row" style="margin-left:5rem ; margin-top:5rem">
+      <div class="col">
+
+          <div class="wp-block-column"><a class="team-single" target="_blank">
+              <img width="900px" height="1000px" src="../../assets/register.jpg" class="attachment-team-image size-team-image" alt="" loading="lazy"   />  <div class="content">
+                <h4>
+                 Pandas   </h4>
+                <h5>Business Operations</h5>
+              </div>
+            </a>
+            
+        </div>
+      </div>
+      <div class="col">
+          <div class="wp-block-column"><a class="team-single" target="_blank">
+              <img width="900px" height="720" src="../../assets/registyer.jpg" class="attachment-team-image size-team-image" alt="" loading="lazy"   sizes="(max-width: 720px) 100vw, 720px" />  <div class="content">
+                <h4>
+                  Python   </h4>
+                <h5>Business Operations</h5>
+              </div>
+            </a>
+            
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="wp-block-column"><a class="team-single" target="_blank">
+            <img width="100%" height="720" src="../../assets/reg.jpeg" class="attachment-team-image size-team-image" alt="" loading="lazy"   sizes="(max-width: 900px) 100vw, 720px" />  <div class="content">
+              <h4>
+               Angular   </h4>
+              <h5>Business Operations</h5>
+            </div>
+          </a>
+          
+      </div>
+
+    </div>
+  </div> -->
+  <!--   
+<h1 style="font-size:40px; margin-left:40rem; padding-top:3em">Workshops</h1>
+<div class="row" style="margin-left:5rem ; margin-top:5rem" *ngFor="let item of workshopList">
+  <div class="col">
+
+    <div class="wp-block-column"><a class="team-single" target="_blank">
+        <img width="900px" height="1000px" src="{{item.banner}}" class="attachment-team-image size-team-image"
+          alt="" loading="lazy" (click)="getdatamodal({{item.id}})" />
+        <div class="content">
+          <h4>
+            {{item.name}} </h4>
+          <h5>Business Operations</h5>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+
+</div>
+   -->
+  <ng-template #trainerDataDisplay let-modal>
+    <div class="modal-header ml-3">
+      <h1 class="modal-title mt-3" id="modal-basic-title" style="font-size: 25px;"></h1>
+      <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <hr>
+    <div class="modal-body p-2 d-flex flex-column justify-content-center align-self-center" style="border: 2px;">
+      <div class="img ">
+        <img [src]="traineeData.banner" style="height:250px; margin: 2px auto;">
+      </div>
+      <p class="text-left">
+        <label class="labelN"  style="font-weight: bold ;">Name:</label>
+        <span class="labelN">{{traineeData.name}}</span>
+      </p>
+        <p class="text-left">
+          <label class="labelN" style="font-weight:bold ;">Trainer :</label>
+          <span class="labelN">{{traineeData.username}}</span>
+        </p>
+      <p class="text-left">
+        <label class="labelN"  style="font-weight:bold ;">Date:</label>
+        <span class="labelN">{{traineeData.wdate}}</span>
+      </p>
+      <p class="text-left">
+        <label class="labelN"  style="font-weight:bold ;">Time:</label>
+        <span class="labelN">{{traineeData.wtime}} </span>
+      </p>
+      <p class="text-left">
+        <label class="labelN"  style="font-weight:bold ;">Description:</label>
+        <span class="labelN">{{traineeData.description}}</span>
+      </p>
+      <p class="text-left">
+        <label class="labelN" style="font-weight:bold ;">Topic covered  :</label>
+        <span class="labelN">{{traineeData.topics}}</span>
+      </p>
+      <p class="text-left">
+        <label class="labelN"  style="font-weight:bold ;">Workshop Link:</label>
+        <!-- <span class="labelN"> {{traineeData.reglink}}</span> -->
+        <a [attr.href]="traineeData.reglink"  (click)="redirect(traineeData.reglink)"rel="noopener noreferrer" >{{traineeData.reglink}}</a>
+      </p>
+      <div class="cont text-left">
+        <div class="stars">
+          <ngx-star-rating [(ngModel)]="rating3" [id]="'rating3'" ></ngx-star-rating >
+        </div>
+        <!-- <div>Rate Your trainer: {{ rating3 }}</div> -->
+      </div>
+      <div class="text-left pb-2">
+        <label class="labelN" style="font-weight:bold ;">Comment :</label>
+        <form novalidate autocomplete="off" [formGroup]="reviewForm">
+        <input
+        type="text"
+        formControlName="review"
+        class="form-control"
+        placeholder="Give your comments"
+        maxlength="20"
+        required
+      />
+        </form>
+      </div>
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Cancel</button>
+    </div> -->
+  </ng-template>

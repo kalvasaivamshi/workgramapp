@@ -1,0 +1,73 @@
+<div class="outer-container">
+    <div class="content-holder">
+    
+        <div class="row">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-0 pl-0 left-img">
+               
+             
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-0 pl-0 right-img">
+            <div class="p-3">
+                <div class="row justify-content-center mt-3">
+                <p class="welcome-text">Welcome To WorkGram </p>
+            </div>
+        <div class="row justify-content-center mt-3">
+            <p class="login-text">Login To Access Your Account</p>
+        </div>
+        <form [formGroup]="loginForm">
+            <div class="row justify-content-center mt-1">
+                <div class="col-12 col-div">
+                    <div class="username-div">
+                        <i class="fa fa-user user-icon"></i>
+                        <input  type="text" formControlName="userName" class="input-tag"
+                            placeholder="Username" style="font-size: 16px;">
+                    </div>
+                    <!-- <app-field-error-display [displayError]="isFieldValid(loginForm, 'userName')"
+                        errorMsg="Please enter valid username"></app-field-error-display> -->
+                </div>
+
+                <div class="col-12 col-div">
+                    <div class="username-div p">
+                        <i class="fa fa-lock user-icon"></i>
+                        <input class="input-tag" type="password" formControlName="password"
+                            placeholder="Password" required style="font-size: 16px;">
+                    </div>
+                    <!-- <app-field-error-display [displayError]="isFieldValid(loginForm, 'password')"
+                        errorMsg="Please enter valid password"></app-field-error-display> -->
+                </div>
+
+               
+
+                <div class="col-12 col-div mt-0">
+                    <div class="button-div pt-3">
+                        <!-- <button class="btn btn-primary login-btn" type="submit" (click)="GoToDashboard()">
+                            Login
+                        </button> -->
+                        <button class="login-button" type="submit" [disabled]="!loginForm.valid" (click)="GoToDashboard()"> Login</button>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-div mt-3">
+                    <div class="register-div">
+                        <p class="no-account-para mb-0">Don't have an account ?</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-div">
+                    <div class="register-div">
+                        <p class="register-para mb-0 pr-2">Register your interest with us </p> 
+                        <br/>
+                        
+                    </div>
+                    <button class="btn btn-primary login-btn" type="submit" (click)="Register()" style="text-align:center">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>

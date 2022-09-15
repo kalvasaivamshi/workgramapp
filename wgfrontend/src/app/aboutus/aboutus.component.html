@@ -1,0 +1,209 @@
+<header class="header-main">
+    <div class="header-bottom">
+      <div class="wrap">
+        <div class="header-bottom-left">
+          <a class="logo">
+           <h2 style="font-size: 40px;">Workgram</h2>
+          </a>
+        </div>
+        <div class="header-bottom-menu">
+          <div class="menu-header-menu-container">
+            <ul id="menu-header-menu" class="menu">
+              <li
+                id="menu-item-14"
+                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-14" (click)="l.active = !l.active; toggleMenu(1);"
+                *ngFor="let l of parentArr"
+              >
+                <a *ngIf="l.sublist.length === 0" [routerLink]="l.rname">{{ l.name }}</a>
+                <a *ngIf="l.sublist.length > 0">{{ l.name }}</a>
+               
+              </li>
+             
+                
+            </ul>
+           
+          </div>
+          
+        </div>
+        <!-- <div class="mobile-only hamburger" [ngClass]="{'header-bottom-menu' : hamburgerToggleOn===true}" [class.active]="hamburgerToggleOn" (click)="toggleMenu()"> -->
+        <div class="mobile-only hamburger" id="hamburger" (click)="toggleMenu(0)">
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mt-5">
+  <section class="p-5 ">
+    <div class="row mb-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1">
+            <div class="p-3">
+                <p class="bsHeading h3 font-weight-bolder"> About us </p>
+                <div style="background-color: #044D23; height: 3px;width:22%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                    Who are we ? <br>
+                    We will let you know our story later. 
+                    <br>
+                    <br>
+                    What is Workgram?
+                </p>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-sm-1 order-md-1 order-lg-2 order-xl-2">
+            <img src="../../assets/app.jpeg" style="height: 200px;" alt="dealer_distribution" class="img-fluid border border-gray">
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <img src="../../assets/connect.jpeg" alt="inbound_logistics" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder">INBOUND LOGISTICS</p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                    A application that stands as a platform between enthusiastic learners and trainers of various domains conducting freeworkshops. 
+                
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+  
+    <div class="row mb-5">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder"> About us </p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                    A learner can see all the details provided by trainers which enables them to connect and clarify their issues personally.
+                </p>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-sm-1 order-md-1 order-lg-2 order-xl-2">
+            <img src="../../assets/connect2.jpeg" alt="dealer_distribution" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <img src="../../assets/register.jpeg" alt="inbound_logistics" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder">INBOUND LOGISTICS</p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                   No tension of missing the registration date. 
+                   <br><br>
+                   Wondering how ?
+                   
+                   Because we don't have any.
+                   <br><br>
+                   Interested in a workshop? 
+                   
+                   Join the link on the scheduled time to dive right in.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row mb-5">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder"> About us </p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                    Any user can provide their valuable feedback on the workshop and it is enabled in such a way that these comments are only visible to users like him.
+                </p>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-sm-1 order-md-1 order-lg-2 order-xl-2">
+            <img src="../../assets/feedback.jpeg" alt="dealer_distribution" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <img src="../../assets/reg.jpeg" alt="inbound_logistics" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <div class="p-3">
+                
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                   Staying in different town, don't have free trainers in your state? <br><br>
+                   Don't wotrry the workshops are all conducted on gmeet enabling the users from anywhere join their favourite workshops.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+  
+    <div class="row mb-5">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder"> About us </p> -->
+                <p class="bsHeading h3 font-weight-bolder"> Our Story </p>
+                <div style="background-color: #044D23; height: 3px;width:22%;" class="my-2"></div>
+                
+                <p class="bsInfo text-justify my-3">
+                   
+                    Reverting back to Who are we...
+                    Four friends from college who wondered why a trainer who is teaching out for free has go class to class to tell about the workshop and give the details to interested students.
+                    
+                    
+                </p>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-sm-1 order-md-1 order-lg-2 order-xl-2">
+            <img src="../../assets/our1.jpeg" alt="dealer_distribution" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <img src="../../assets/our2.jpeg" alt="inbound_logistics" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder">INBOUND LOGISTICS</p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                  They decided this is not how free training camps should be treated as. They need not roam around to give out something valuable for free.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class=" row mb-5">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-2 order-sm-2 order-md-2 order-lg-1 order-xl-1">
+            <div class="p-3">
+                <!-- <p class="bsHeading h3 font-weight-bolder"> About us </p> -->
+                <div style="background-color: #044D23; height: 3px;width:10%;" class="my-2"></div>
+                <p class="bsInfo text-justify my-3">
+                    Today we are here giving our idea into life.
+                    
+                    
+                </p>
+            </div>
+       
+
+        </div>
+        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-2 order-sm-1 order-md-1 order-lg-2 order-xl-2">
+            <img src="../../assets/our3.jpeg" alt="dealer_distribution" style="height: 200px;" class="img-fluid border border-gray">
+        </div>
+   
+    </div>
+  </section>
+</div>
+ 
